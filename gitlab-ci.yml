@@ -1,0 +1,11 @@
+stages:  
+  - deploy
+deploy_aws:
+  stage: deploy
+  before_script:
+     - pip install awsebcli --upgrade --user
+     - git checkout -f main
+  script: 
+      - cat ~/.aws/credentials
+      - /home/ellocentlabs/.local/bin/eb init 
+      - /home/ellocentlabs/.local/bin/eb deploy Testflask-env
